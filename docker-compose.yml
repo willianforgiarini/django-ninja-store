@@ -1,0 +1,16 @@
+services:
+  my-store:
+    image: postgres:latest
+    container_name: store
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=12345
+      - POSTGRES_NAME=store
+    ports:
+      - "5435:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/database
+      - ./script_db.sql:/docker-entrypoint-initdb.d/init.sql:ro
+
+volumes:
+  postgres_data:     
